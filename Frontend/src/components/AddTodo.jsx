@@ -45,6 +45,13 @@ function AddTodo() {
 
     });
 
+
+    const handleCancel = ()=>{
+        formik.resetForm();
+        dispatch(clearSelectedTodo());
+        navigate('/');
+    }
+
   return (
     <div>
         <div className='heading'> {selectedTodo ? "Edit Todo" : "Add Todo"}</div>
@@ -56,8 +63,10 @@ function AddTodo() {
             <label htmlFor="text">Text:</label>
             <textarea id="text" name="text" onChange={formik.handleChange} value={ formik.values.text} onBlur={formik.handleBlur} ></textarea>
             {formik.touched.text && formik.errors.text ? (<p style={{color:'red'}}>{formik.errors.text}</p>) : null}
-            <button className='btn' type="submit">{selectedTodo ? "Update Todo" : "Add Todo"}</button>
-        </form>
+            <div className='btns'><button className='btn' type="submit">{selectedTodo ? "Update Todo" : "Add Todo"}</button>
+            <button className='btn-cancel'type='button'onClick={handleCancel}>Cancel</button>
+       </div>
+             </form>
         </div>
     </div>
   )

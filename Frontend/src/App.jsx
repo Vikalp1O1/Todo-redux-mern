@@ -41,7 +41,7 @@ useEffect(()=>{
       <button className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition' onClick={() => navigate('/add')}>Add Todo</button>
 </div>
       <div className='flex gap-4 flex-wrap justify-center'>{
-        todos.map((todo) => (
+        todos?.map((todo) => (
           <Card key={todo._id} title={todo.title} text={todo.text} onEdit={() => {
             dispatch(selectedTodo(todo));
             navigate('/add');
